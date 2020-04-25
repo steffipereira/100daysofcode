@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    body{
+        background-color: #785964;
+    }
+    .btn{
+        color: cornsilk;
+        background-color: #454545;
+        border: 1px solid cornsilk;
+        border-radius:5px;
+        padding: 15px;
+        font-size: 15px;
+    }
+    .quote-wrapper{
+        width: 45vw;
+        height: 45vh;
+        display: flex;
+        flex-direction: column;
+        background-color: #D5C7BC;
+        justify-content: space-between;
+        opacity: 0.8;
+        margin: 200px auto;
+        padding: 20px;
+    }
+    
+    .quote-body{
+        font-size: 22px;
+    }
+    .quote-author{
+        font-size: 16px;
+    }
+    </style>
+</head>
+<body>
+    <div class="quote-wrapper">
+        <button class="btn">Generate Quote</button>
+        <div class="quote-body"></div>
+        <div class="quote-author"></div>
+    </div>
+    <script type="text/javascript">
+    const button = document.querySelector('button');
+    const quoteBody = document.querySelector('.quote-body');
+    const quoteAuthor = document.querySelector('.quote-author');
+    const api = 'http://quotes.stormconsultancy.co.uk/random.json';
+
+    function displayQuote(quote, author){
+        quoteBody.textContent = quote;
+        quoteAuthor.textContent = author;
+    }
+
+    function generateQuote(){
+        fetch(api).then((response) => {
+            return response.json();
+        }).then((data) => {
+            return displayQuote(data.quote, data.author);
+        })
+        .catch((err) => {
+            console.log('error', err)
+        });
+    }
+
+    button.addEventListener('click', generateQuote);
+    generateQuote();
+    </script>
+</body>
+</html>

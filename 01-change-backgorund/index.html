@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Change Background</title>
+    <style>
+    body{
+        background-color: darkblue;
+    }
+    .btn-wrapper{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 90vw;
+        height: 90vh;
+        margin: 0 auto;
+    }
+    .btn{
+        color: cornsilk;
+        background-color: darkblue;
+        border: 1px solid cornsilk;
+        border-radius:5px;
+        padding: 15px;
+        font-size: 15px;
+    }
+    </style>
+</head>
+<body>
+    <div class="btn-wrapper">
+        <button class="btn">Change Color</button>
+    </div>
+<script>
+const button = document.querySelector('button');
+const body = document.querySelector('body');
+const bg = ['darkorange', 'darkolivegreen', 'darkmagenta', 'darkred', 'darkgreen'];
+
+
+button.addEventListener('click', function(){
+    const random = bg.sort(() => Math.random() - 0.5);
+    // const randomBg = bg.sort(() => Math.random() - 0.5).pop();
+    const randomBg = random[0]
+    console.log(randomBg);
+    body.style.backgroundColor = randomBg;
+    button.style.backgroundColor = randomBg;
+})
+
+</script>
+</body>
+</html>
